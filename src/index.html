@@ -3,242 +3,1112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jasmitha Duvvuru - Data Engineer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Jasmitha Duvvuru - Data Engineer & Analyst</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-primary: #0a0e1a;
+    --bg-secondary: #111827;
+    --bg-card: #1a2332;
+    --accent-cyan: #00ffcc;
+    --accent-green: #00ff88;
+    --text-primary: #e5e7eb;
+    --text-secondary: #9ca3af;
+    --border: #1f2937;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(10, 14, 26, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+nav.scrolled {
+    background: rgba(10, 14, 26, 0.95);
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: padding 0.3s ease;
+}
+
+nav.scrolled .nav-container {
+    padding: 0.8rem 2rem;
+}
+
+.nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--accent-cyan);
+    transition: font-size 0.3s ease;
+}
+
+nav.scrolled .nav-logo {
+    font-size: 1rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+nav.scrolled .nav-links a {
+    font-size: 0.9rem;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-cyan);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--accent-cyan);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 80px;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.15;
+    z-index: 0;
+}
+
+.data-viz {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.data-node {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--accent-cyan);
+    border-radius: 50%;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.data-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+    animation: flow 4s linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.5); }
+}
+
+@keyframes flow {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 0 0.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.hero-text h1 {
+    font-family: 'Space Mono', monospace;
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    white-space: nowrap;
+}
+
+.hero-text h2 {
+    font-size: 1.8rem;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.hero-tagline {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    text-align: justify;
+}
+
+.hero-subtext {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--accent-cyan);
+    margin-bottom: 2.5rem;
+    opacity: 0.8;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.btn {
+    padding: 0.9rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    border: 2px solid;
+    display: inline-block;
+    min-width: 160px;
+    text-align: center;
+}
+
+.btn-primary {
+    background: transparent;
+    color: var(--text-primary);
+    border-color: var(--accent-cyan);
+}
+
+.btn-primary:hover {
+    background: transparent;
+    color: var(--accent-cyan);
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border-color: var(--accent-cyan);
+}
+
+.btn-secondary:hover {
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+}
+
+.hero-image {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-pic {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    border: 3px solid var(--accent-cyan);
+    box-shadow: 0 0 40px rgba(0, 255, 204, 0.2);
+    object-fit: cover;
+}
+
+/* Sections */
+section {
+    padding: 1.5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.section-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--text-primary);
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--accent-cyan);
+}
+
+/* About Section */
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-content p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.9;
+    text-align: justify;
+}
+
+/* Projects Section */
+.projects-section-wrapper {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0 80px;
+}
+
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    width: 100%;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    flex-shrink: 0;
+}
+
+.project-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 10px 40px rgba(0, 255, 204, 0.1);
+}
+
+.project-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+.project-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.project-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    justify-content: center;
+}
+
+.tech-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    padding: 0.3rem 0.7rem;
+    background: rgba(0, 255, 204, 0.1);
+    color: var(--accent-cyan);
+    border-radius: 3px;
+    border: 1px solid rgba(0, 255, 204, 0.2);
+}
+
+.project-description {
+    display: none;
+}
+
+.view-details-btn {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    background: transparent;
+    color: var(--accent-cyan);
+    border: 2px solid var(--accent-cyan);
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.view-details-btn:hover {
+    background: var(--accent-cyan);
+    color: var(--bg-primary);
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--accent-cyan);
+    border: 2px solid var(--accent-cyan);
+    color: var(--bg-primary);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.carousel-btn:hover {
+    background: transparent;
+    color: var(--accent-cyan);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn--left {
+    left: 10px;
+}
+
+.carousel-btn--right {
+    right: 10px;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+}
+
+.modal.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: var(--bg-card);
+    border: 2px solid var(--accent-cyan);
+    border-radius: 12px;
+    padding: 2.5rem;
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+    animation: modalSlideIn 0.3s ease;
+    text-align: center;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    background: none;
+    border: none;
+    transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+    color: var(--accent-cyan);
+}
+
+.modal-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.5rem;
+    color: var(--accent-cyan);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.modal-description {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    text-align: justify;
+}
+
+.modal-link {
+    display: inline-block;
+    padding: 0.9rem 2rem;
+    background: var(--accent-cyan);
+    color: var(--bg-primary);
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.modal-link:hover {
+    background: transparent;
+    color: var(--accent-cyan);
+    border: 2px solid var(--accent-cyan);
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+}
+
+
+/* Skills Section */
+#skills {
+    position: relative;
+}
+
+.skills-container {
+    position: relative;
+    min-height: 600px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.skills-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('./assets/Background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    filter: brightness(0.4);
+}
+
+.skills-content {
+    position: relative;
+    z-index: 1;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.skill-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.skill-group-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.2rem;
+    color: var(--accent-cyan);
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.skill-bubbles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.skill-bubble {
+    padding: 0.6rem 1.5rem;
+    background: rgba(26, 35, 50, 0.8);
+    border: 1px solid rgba(0, 255, 204, 0.3);
+    border-radius: 50px;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.skill-bubble-wide {
+    width: auto;
+    max-width: fit-content;
+    text-align: center;
+    padding: 0.8rem 2rem;
+}
+
+.skill-bubble:hover {
+    border-color: var(--accent-cyan);
+    background: rgba(0, 255, 204, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 255, 204, 0.2);
+}
+
+/* Contact Section */
+.contact-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-text-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    text-align: left;
+}
+
+.contact-icon {
+    font-size: 1.5rem;
+    color: var(--accent-cyan);
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+}
+
+.contact-item p {
+    font-size: 1rem;
+    color: var(--text-primary);
+    line-height: 1.8;
+}
+
+.inline-link {
+    color: var(--accent-cyan);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.inline-link:hover {
+    border-bottom-color: var(--accent-cyan);
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-links {
+        gap: 1.5rem;
+    }
+    
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+    }
+    
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .skills-content {
+        padding: 2rem 1.5rem;
+        gap: 2rem;
+    }
+    
+    .skill-bubble {
+        font-size: 0.85rem;
+        padding: 0.5rem 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+    }
+    
+    .nav-links {
+        gap: 1rem;
+    }
+}
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav id="navbar" class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="#home">Jasmitha Duvvuru</a>
-            </div>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="#about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#projects" class="nav-link">Projects</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#skills" class="nav-link">Skills</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link">Contact</a>
-                </li>
-            </ul>
-            <div class="nav-progress">
-                <div class="nav-progress-bar"></div>
-            </div>
-        </div>
-    </nav>
 
-    <main>
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="hero-title">Hi, I'm Jasmitha Duvvuru</h1>
-                    <h2 class="hero-subtitle">Data Engineer</h2>
-                    <p class="hero-description">
-                        Results-oriented Data Engineer with 3+ years of experience building and optimizing data pipelines for healthcare systems serving millions. Proven ability to clean and model data (SQL, Python), build dashboards (Power BI), and improve system performance by 30–40% through automation and root-cause analysis. Collaborative and detail-focused, I thrive at translating messy datasets into clear insights to support decision-making.
-                    </p>
-                    <div class="hero-buttons">
-                        <a href="#projects" class="btn btn-primary">View My Work</a>
-                        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <img src="./assets/Profile_Pic.jpg" alt="Jasmitha Duvvuru" class="profile-pic">
+<!-- Navigation -->
+<nav id="navbar">
+    <div class="nav-container">
+        <div class="nav-logo">Jasmitha Duvvuru</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-bg">
+        <div class="data-viz" id="dataViz"></div>
+    </div>
+    <div class="hero-container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Data Engineer & Analyst</h1>
+                <p class="hero-tagline">I build reliable data systems that move from raw ingestion to clean pipelines to actionable insights.</p>
+                <p class="hero-subtext">MS Information Management @ UIUC (4.0 GPA) · Ex-Deloitte · AWS · Python · SQL</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">View My Work</a>
+                    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                    <a href="./assets/Jasmitha Duvvuru - Resume.pdf" target="_blank" class="btn btn-secondary">Resume</a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="about-container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-card">
-                    <div class="about-card-header">
-                        <i class="fas fa-briefcase"></i>
-                        <h3>My Career</h3>
-                    </div>
-                    <p>
-                        Throughout my career, I've had the privilege of working with healthcare systems that serve millions of patients, where data accuracy and system reliability are paramount. I take pride in my ability to improve system performance significantly while maintaining the highest standards of data integrity.
-                    </p>
-                </div>
-                <div class="about-card">
-                    <div class="about-card-header">
-                        <i class="fas fa-lightbulb"></i>
-                        <h3>My Passion</h3>
-                    </div>
-                    <p>
-                        When I'm not diving deep into data pipelines or crafting SQL queries, I enjoy exploring the intersection of technology and creativity. I believe that the best data solutions come from understanding both the technical requirements and the human stories behind the numbers.
-                    </p>
-                </div>
-                <div class="about-interests">
-                    <h3>What I Enjoy</h3>
-                    <ul class="interests-list">
-                        <li><i class="fas fa-palette"></i> Art </li>
-                        <li><i class="fas fa-film"></i> Movies </li>
-                        <li><i class="fas fa-star"></i> Astronomy </li>
-                        <li><i class="fas fa-chart-bar"></i> Analysis </li>
-                    </ul>
-                </div>
+            <div class="hero-image">
+                <img src="./assets/edited-photo.png" alt="Jasmitha Duvvuru" class="profile-pic">
             </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="projects-container">
-            <h2 class="section-title">My Projects</h2>
-            <div class="carousel-container">
-                <div class="carousel">
-                    <div class="carousel-track-container">
-                        <ul class="carousel-track">
-                            <li class="carousel-slide current-slide">
-                                <div class="project-card">
-                                    <img src="./assets/project1.jpg" alt="Chicago City Crime Analysis" class="project-image">
-                                    <div class="project-content">
-                                        <h3 class="project-title">Chicago City Crime Analysis</h3>
-                                        <p class="project-description">Comprehensive analysis of Chicago crime data with interactive dashboards and predictive insights.</p>
-                                        <button class="btn btn-primary project-btn" data-modal="modal1">View Project</button>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="carousel-slide">
-                                <div class="project-card">
-                                    <img src="./assets/project2.jpg" alt="S&P 500 Prediction" class="project-image">
-                                    <div class="project-content">
-                                        <h3 class="project-title">S&P 500 Prediction</h3>
-                                        <p class="project-description">Machine learning models for predicting S&P 500 stock market trends using historical data.</p>
-                                        <button class="btn btn-primary project-btn" data-modal="modal2">View Project</button>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="carousel-slide">
-                                <div class="project-card">
-                                    <img src="./assets/project3.jpg" alt="Payment and Compliance Management System" class="project-image">
-                                    <div class="project-content">
-                                        <h3 class="project-title">Payment and Compliance Management System</h3>
-                                        <p class="project-description">SQL-based system for managing payments and ensuring compliance in healthcare organizations.</p>
-                                        <button class="btn btn-primary project-btn" data-modal="modal3">View Project</button>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <button class="carousel-btn carousel-btn--left"><i class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn carousel-btn--right"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="skills-video-background">
-            <video autoplay muted loop>
-                <source src="./assets/BGvideo.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="skills-overlay"></div>
-        <div class="skills-container">
-            <h2 class="section-title">Skills & Technologies</h2>
-            <div class="skills-content">
-                <div class="skill-category">
-                    <h3 class="category-title">Programming Languages</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">R</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3 class="category-title">Libraries & Frameworks</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Numpy</span>
-                        <span class="skill-tag">Pandas</span>
-                        <span class="skill-tag">Matplotlib</span>
-                        <span class="skill-tag">Seaborn</span>
-                        <span class="skill-tag">Scikit-learn</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3 class="category-title">Databases & Tools</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Microsoft SQL Server</span>
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">MS Excel</span>
-                        <span class="skill-tag">Power BI</span>
-                        <span class="skill-tag">Tableau</span>
-                        <span class="skill-tag">MS Office</span>
-                        <span class="skill-tag">AWS SageMaker</span>
-                        <span class="skill-tag">Microsoft Visual Studio</span>
-                        <span class="skill-tag">GitHub</span>
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">SoapUI</span>
-                        <span class="skill-tag">Dynatrace</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="contact-container">
-            <h2 class="section-title">Contact</h2>
-            <div class="contact-multi-column">
-                <p><i class="fas fa-envelope"></i> Reach out via <a href="mailto:jd56@illinois.edu">jd56@illinois.edu</a> for professional inquiries and project discussions.</p>
-                <p><i class="fab fa-github"></i> Check out my <a href="https://github.com/jazzduvv-56" target="_blank">GitHub</a> to explore my latest projects and open-source contributions.</p>
-                <p><i class="fab fa-linkedin"></i> Connect with me on <a href="https://www.linkedin.com/in/duvvurujasmitha/" target="_blank">LinkedIn</a> for professional networking and industry updates.</p>
-            </div>
-        </div>
-    </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <p>&copy; 2025 Jasmitha Duvvuru. All rights reserved.</p>
-            <div class="footer-social">
-                <a href="https://github.com/jazzduvv-56" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/duvvurujasmitha/" target="_blank"><i class="fab fa-linkedin"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Modals -->
-    <div id="modal1" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3>Chicago City Crime Analysis</h3>
-            <p>This project involves comprehensive analysis of Chicago crime data, featuring interactive dashboards and predictive insights to help understand crime patterns and trends.</p>
-            <a href="https://github.com/jazzduvv-56/dashboard_chicagocrime" target="_blank" class="btn btn-primary">View on GitHub</a>
         </div>
     </div>
+</section>
 
-    <div id="modal2" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3>S&P 500 Prediction</h3>
-            <p>Machine learning project focused on predicting S&P 500 stock market trends using historical data and various predictive models.</p>
-            <a href="https://github.com/jazzduvv-56/predictions" target="_blank" class="btn btn-primary">View on GitHub</a>
+<!-- About Section -->
+<section id="about">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-content">
+        <p>I'm a Data Engineer & Analyst with 2.5 years of professional experience at Deloitte Consulting, where I optimized SQL data workflows, managed 120+ API integrations for a U.S. government healthcare platform serving 3M+ users.</p>
+        <br>
+        <p>Currently pursuing my MS in Information Management at the University of Illinois Urbana-Champaign (GPA: 4.0), I specialize in building end-to-end data pipelines, integrating cloud infrastructure, and applying machine learning and generative AI to solve real-world problems.</p>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-section-wrapper">
+        <button class="carousel-btn carousel-btn--left">‹</button>
+        <div class="carousel-container">
+            <div class="carousel-track">
+                
+                <!-- Slide 1: Market Anomaly Detection -->
+                <div class="carousel-slide">
+                    <div class="project-card">
+                        <img src="./assets/project2.jpg" alt="Market Anomaly Detection" class="project-image">
+                        <div class="project-content">
+                            <h3 class="project-title">Market Anomaly Detection & Prediction System</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">AWS Lambda</span>
+                                <span class="tech-tag">Glue (PySpark)</span>
+                                <span class="tech-tag">SageMaker</span>
+                                <span class="tech-tag">XGBoost</span>
+                            </div>
+                            <p class="project-description">End-to-end serverless ETL pipeline ingesting data from 3 financial sources every 30 minutes. Features a Bronze/Silver/Gold medallion data lake on S3 and XGBoost anomaly prediction model.</p>
+                            <button class="view-details-btn" data-modal="modal1">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2: Carely -->
+                <div class="carousel-slide">
+                    <div class="project-card">
+                        <img src="./assets/carely.png" alt="Carely AI Companion" class="project-image">
+                        <div class="project-content">
+                            <h3 class="project-title">Carely — Generative AI Companion for Elderly Care</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">FastAPI</span>
+                                <span class="tech-tag">Streamlit</span>
+                                <span class="tech-tag">ChromaDB</span>
+                                <span class="tech-tag">Groq</span>
+                            </div>
+                            <p class="project-description">AI-powered companion for elderly users featuring a multi-layer memory system with PII redaction, emergency detection, and real-time caregiver alerts.</p>
+                            <button class="view-details-btn" data-modal="modal2">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3: InsightHub -->
+                <div class="carousel-slide">
+                    <div class="project-card">
+                        <img src="./assets/project insighthub.png" alt="InsightHub Platform" class="project-image">
+                        <div class="project-content">
+                            <h3 class="project-title">InsightHub — AI-Powered Team Knowledge Platform</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">Google Gemini</span>
+                                <span class="tech-tag">JWT</span>
+                            </div>
+                            <p class="project-description">Full-stack team knowledge platform with RAG pipeline for PDF analysis. Features Google Gemini embeddings and source-grounded AI responses with document citation.</p>
+                            <button class="view-details-btn" data-modal="modal3">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 4: Chicago Crime Analysis -->
+                <div class="carousel-slide">
+                    <div class="project-card">
+                        <img src="./assets/project1.jpg" alt="Chicago Crime Analysis" class="project-image">
+                        <div class="project-content">
+                            <h3 class="project-title">Chicago City Crime Analysis</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">Power BI</span>
+                                <span class="tech-tag">Python</span>
+                            </div>
+                            <p class="project-description">Interactive Power BI dashboards analyzing 8M+ crime records from 2001–2024. Achieved 95% data accuracy for public safety trend analysis.</p>
+                            <button class="view-details-btn" data-modal="modal4">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <button class="carousel-btn carousel-btn--right">›</button>
+    </div>
+</section>
+
+<!-- Modals -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <button class="modal-close">&times;</button>
+        <h3 class="modal-title">Market Anomaly Detection & Prediction System</h3>
+        <p class="modal-description">End-to-end serverless ETL pipeline ingesting data from 3 financial sources (GDELT news sentiment, Yahoo Finance, FRED VIX) every 30 minutes. Features a Bronze/Silver/Gold medallion data lake on S3, XGBoost anomaly prediction model trained on 262 trading days (backfiling 1+ TB of historical data), and Amazon Bedrock (Llama 3.1) integration for auto-generated natural language anomaly explanations.</p>
+        <a href="https://github.com/jasduvv7929/AnomalyDetection" target="_blank" class="modal-link">View on GitHub →</a>
+    </div>
+</div>
+
+<div id="modal2" class="modal">
+    <div class="modal-content">
+        <button class="modal-close">&times;</button>
+        <h3 class="modal-title">Carely — Generative AI Companion for Elderly Care</h3>
+        <p class="modal-description">AI-powered companion for elderly users featuring a multi-layer memory system — combining short-term SQLite context, long-term ChromaDB semantic retrieval, and auto-generated episodic daily summaries. Includes PII redaction, rule-based emergency detection, and real-time Telegram caregiver alerts. Validated with 6 pilot users and 2 caregivers, achieving a UMUX-Lite usability score of 82/100.</p>
+        <a href="https://github.com/jasduvv7929/Carely_AI" target="_blank" class="modal-link">View on GitHub →</a>
+    </div>
+</div>
+
+<div id="modal3" class="modal">
+    <div class="modal-content">
+        <button class="modal-close">&times;</button>
+        <h3 class="modal-title">InsightHub — AI-Powered Team Knowledge Platform</h3>
+        <p class="modal-description">Full-stack team knowledge platform with a RAG pipeline chunking PDFs into 1,000-character segments, generating Google Gemini embeddings, and retrieving top-5 relevant chunks via cosine similarity for source-grounded AI responses with document citation. Supports multi-team collaboration, document management, and real-time AI chat.</p>
+        <a href="https://github.com/jasduvv7929/InsightHub" target="_blank" class="modal-link">View on GitHub →</a>
+    </div>
+</div>
+
+<div id="modal4" class="modal">
+    <div class="modal-content">
+        <button class="modal-close">&times;</button>
+        <h3 class="modal-title">Chicago City Crime Analysis</h3>
+        <p class="modal-description">Interactive Power BI dashboards analyzing 8M+ crime records from 2001–2024. Performed data cleaning, datetime standardization, and null handling to achieve 95% data accuracy for public safety trend analysis. Features comprehensive visualizations for crime patterns, temporal trends, and geographic hotspots to support evidence-based policy decisions.</p>
+        <a href="https://github.com/jasduvv7929/ChicagoCrimeAnalysisDashboard" target="_blank" class="modal-link">View on GitHub →</a>
+    </div>
+</div>
+
+<!-- Skills Section -->
+<section id="skills">
+    <h2 class="section-title">Skills & Technologies</h2>
+    <div class="skills-container">
+        <div class="skills-bg"></div>
+        <div class="skills-content">
+            
+            <div class="skill-group">
+                <h3 class="skill-group-title">Programming Languages</h3>
+                <div class="skill-bubbles">
+                    <span class="skill-bubble skill-bubble-wide">Python: pandas, NumPy, Scikit-learn, Matplotlib</span>
+                    <span class="skill-bubble">SQL</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <h3 class="skill-group-title">Data Engineering</h3>
+                <div class="skill-bubbles">
+                    <span class="skill-bubble">ETL</span>
+                    <span class="skill-bubble">PySpark</span>
+                    <span class="skill-bubble">Snowflake</span>
+                    <span class="skill-bubble">Airflow</span>
+                    <span class="skill-bubble">REST APIs</span>
+                    <span class="skill-bubble">Postman</span>
+                    <span class="skill-bubble">Microsoft Visual Studio</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <h3 class="skill-group-title">Cloud</h3>
+                <div class="skill-bubbles">
+                    <span class="skill-bubble skill-bubble-wide">AWS: Lambda, S3, Glue, SageMaker, Athena, DynamoDB, EventBridge, Bedrock, CloudWatch</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <h3 class="skill-group-title">Database</h3>
+                <div class="skill-bubbles">
+                    <span class="skill-bubble">Microsoft SQL Server</span>
+                    <span class="skill-bubble">MySQL</span>
+                    <span class="skill-bubble">MongoDB</span>
+                    <span class="skill-bubble">ChromaDB</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <h3 class="skill-group-title">Visualization & Tools</h3>
+                <div class="skill-bubbles">
+                    <span class="skill-bubble">Power BI</span>
+                    <span class="skill-bubble">Tableau</span>
+                    <span class="skill-bubble">MS Excel</span>
+                    <span class="skill-bubble">Git</span>
+                    <span class="skill-bubble">GitHub</span>
+                    <span class="skill-bubble">Dynatrace</span>
+                    <span class="skill-bubble">SQL Profiler</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <h3 class="skill-group-title">Domains</h3>
+                <div class="skill-bubbles">
+                    <span class="skill-bubble">Data Engineering</span>
+                    <span class="skill-bubble">Data Analysis</span>
+                    <span class="skill-bubble">Generative AI</span>
+                    <span class="skill-bubble">Machine Learning</span>
+                </div>
+            </div>
+
         </div>
     </div>
+</section>
 
-    <div id="modal3" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3>Payment and Compliance Management System</h3>
-            <p>SQL-based system designed for managing payments and ensuring compliance in healthcare organizations with robust database design.</p>
-            <a href="https://github.com/jazzduvv-56/sqldatabases" target="_blank" class="btn btn-primary">View on GitHub</a>
+<!-- Contact Section -->
+<section id="contact">
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="contact-content">
+        <div class="contact-text-grid">
+            <div class="contact-item">
+                <span class="contact-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                </span>
+                <p>Reach out via <a href="mailto:jd56@illinois.edu" class="inline-link">jd56@illinois.edu</a> for professional inquiries and project discussions.</p>
+            </div>
+            
+            <div class="contact-item">
+                <span class="contact-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                    </svg>
+                </span>
+                <p>Check out my <a href="https://github.com/jasduvv7929" target="_blank" class="inline-link">GitHub</a> to explore my latest projects.</p>
+            </div>
+            
+            <div class="contact-item">
+                <span class="contact-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </span>
+                <p>Connect with me on <a href="https://www.linkedin.com/in/duvvurujasmitha/" target="_blank" class="inline-link">LinkedIn</a> for professional networking.</p>
+            </div>
         </div>
     </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>© 2026 Jasmitha Duvvuru. All rights reserved.</p>
+</footer>
+
+<script>
+// Animated data visualization in hero
+function createDataViz() {
+    const dataViz = document.getElementById('dataViz');
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    
+    // Create data nodes
+    for (let i = 0; i < 20; i++) {
+        const node = document.createElement('div');
+        node.className = 'data-node';
+        node.style.left = Math.random() * width + 'px';
+        node.style.top = Math.random() * height + 'px';
+        node.style.animationDelay = Math.random() * 3 + 's';
+        dataViz.appendChild(node);
+    }
+    
+    // Create flowing lines
+    for (let i = 0; i < 8; i++) {
+        const line = document.createElement('div');
+        line.className = 'data-line';
+        line.style.top = Math.random() * height + 'px';
+        line.style.width = (200 + Math.random() * 300) + 'px';
+        line.style.animationDelay = Math.random() * 4 + 's';
+        dataViz.appendChild(line);
+    }
+}
+
+// Navbar scroll effect
+window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+    
+    // Update active nav link
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    
+    let current = '';
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (window.scrollY >= sectionTop - 200) {
+            current = section.getAttribute('id');
+        }
+    });
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+        }
+    });
+});
+
+// Initialize on load
+window.addEventListener('load', () => {
+    createDataViz();
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+</script>
+
 </body>
 </html>
