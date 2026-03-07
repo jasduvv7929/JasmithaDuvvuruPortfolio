@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScrolling();
     initCarousel();
     initModals();
+    initResumeModal();
 });
 
 // Animated data visualization in hero
@@ -173,6 +174,50 @@ function initModals() {
             modals.forEach(modal => {
                 modal.classList.remove('active');
             });
+            document.body.style.overflow = 'auto';
+        }
+    });
+}
+
+// Resume Modal functionality
+function initResumeModal() {
+    const resumeBtn = document.getElementById('resumeBtn');
+    const resumeModal = document.getElementById('resumeModal');
+    
+    if (!resumeBtn || !resumeModal) {
+        console.error('Resume button or modal not found');
+        return;
+    }
+    
+    const closeBtns = resumeModal.querySelectorAll('.modal-close');
+    
+    // Open resume modal
+    resumeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        resumeModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+    
+    // Close resume modal
+    closeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            resumeModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+    });
+    
+    // Close on background click
+    resumeModal.addEventListener('click', (e) => {
+        if (e.target === resumeModal) {
+            resumeModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+    
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && resumeModal.classList.contains('active')) {
+            resumeModal.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
     });
