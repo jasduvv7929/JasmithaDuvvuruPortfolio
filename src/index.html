@@ -621,12 +621,15 @@ section {
     border: 2px solid var(--accent-cyan);
     border-radius: 8px;
     overflow: hidden;
+    background: #ffffff;
+    min-height: 600px;
 }
 
 .resume-viewer iframe {
     width: 100%;
     height: 100%;
     border: none;
+    display: block;
 }
 
 /* Skills Section */
@@ -1013,7 +1016,7 @@ footer {
             <div class="hero-text">
                 <h1>Data Engineer & Analyst</h1>
                 <p class="hero-tagline">I build reliable data systems that move from raw ingestion to clean pipelines to actionable insights.</p>
-                <p class="hero-subtext">MS Information Management @ UIUC (4.0 GPA) · Ex-Deloitte · AWS · Python · SQL</p>
+                <p class="hero-subtext">MS in Information Management @ UIUC (4.0 GPA) · Ex-Deloitte · AWS · Python · SQL · GenAI</p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">View My Work</a>
                     <a href="#contact" class="btn btn-secondary">Get In Touch</a>
@@ -1031,7 +1034,7 @@ footer {
 <section id="about">
     <h2 class="section-title">About Me</h2>
     <div class="about-content">
-        <p>I'm a Data Engineer & Analyst with 2.5 years of professional experience at Deloitte Consulting, where I optimized SQL data workflows, managed 120+ API integrations for a U.S. government healthcare platform serving 3M+ users.</p>
+        <p>I'm a Data Engineer with 3 years of professional experience at Deloitte Consulting, where I optimized SQL data workflows, managed 120+ API integrations for a U.S. government healthcare platform serving 2.5M+ users.</p>
         <br>
         <p>Currently pursuing my MS in Information Management at the University of Illinois Urbana-Champaign (GPA: 4.0), I specialize in building end-to-end data pipelines, integrating cloud infrastructure, and applying machine learning and generative AI to solve real-world problems.</p>
     </div>
@@ -1111,6 +1114,7 @@ footer {
                             <div class="project-tech">
                                 <span class="tech-tag">Power BI</span>
                                 <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Snowflake</span>
                             </div>
                             <p class="project-description">Interactive Power BI dashboards analyzing 8M+ crime records from 2001–2024. Achieved 95% data accuracy for public safety trend analysis.</p>
                             <button class="view-details-btn" data-modal="modal4">View Details</button>
@@ -1129,7 +1133,7 @@ footer {
     <div class="modal-content">
         <button class="modal-close">&times;</button>
         <h3 class="modal-title">Market Anomaly Detection & Prediction System</h3>
-        <p class="modal-description">End-to-end serverless ETL pipeline ingesting data from 3 financial sources (GDELT news sentiment, Yahoo Finance, FRED VIX) every 30 minutes. Features a Bronze/Silver/Gold medallion data lake on S3, XGBoost anomaly prediction model trained on 262 trading days (backfiling 1+ TB of historical data), and Amazon Bedrock (Llama 3.1) integration for auto-generated natural language anomaly explanations.</p>
+        <p class="modal-description">End-to-end serverless ETL pipeline ingesting data from 3 financial sources (GDELT news sentiment, Yahoo Finance, FRED VIX) every 30 minutes. Features a Bronze/Silver/Gold medallion data lake on S3, 29-feature SageMaker XGBoost pipeline processing 1TB+ of market and GDELT news data, and Amazon Bedrock (Llama 3.1) integration for auto-generated natural language anomaly explanations.</p>
         <a href="https://github.com/jasduvv7929/AnomalyDetection" target="_blank" class="modal-link">View on GitHub →</a>
     </div>
 </div>
@@ -1172,7 +1176,7 @@ footer {
             </div>
         </div>
         <div class="resume-viewer">
-            <iframe src="./assets/Jasmitha%20Duvvuru%20-%20Resume.pdf#toolbar=0" title="Resume"></iframe>
+            <iframe src="./assets/Jasmitha%20Duvvuru%20-%20Resume.pdf#view=FitH&toolbar=0&navpanes=0&scrollbar=1" title="Resume"></iframe>
         </div>
     </div>
 </div>
@@ -1187,7 +1191,7 @@ footer {
             <div class="skill-group">
                 <h3 class="skill-group-title">Programming Languages</h3>
                 <div class="skill-bubbles">
-                    <span class="skill-bubble skill-bubble-wide">Python: pandas, NumPy, Scikit-learn, Matplotlib</span>
+                    <span class="skill-bubble skill-bubble-wide">Python: Pandas, NumPy, Scikit-learn, Matplotlib</span>
                     <span class="skill-bubble">SQL</span>
                 </div>
             </div>
@@ -1201,14 +1205,13 @@ footer {
                     <span class="skill-bubble">Airflow</span>
                     <span class="skill-bubble">REST APIs</span>
                     <span class="skill-bubble">Postman</span>
-                    <span class="skill-bubble">Microsoft Visual Studio</span>
                 </div>
             </div>
 
             <div class="skill-group">
                 <h3 class="skill-group-title">Cloud</h3>
                 <div class="skill-bubbles">
-                    <span class="skill-bubble skill-bubble-wide">AWS: Lambda, S3, Glue, SageMaker, Athena, DynamoDB, EventBridge, Bedrock, CloudWatch</span>
+                    <span class="skill-bubble skill-bubble-wide">AWS: Lambda, S3, IAM, Glue, SageMaker, Athena, DynamoDB, EventBridge, Bedrock, CloudWatch</span>
                 </div>
             </div>
 
@@ -1232,6 +1235,7 @@ footer {
                     <span class="skill-bubble">GitHub</span>
                     <span class="skill-bubble">Dynatrace</span>
                     <span class="skill-bubble">SQL Profiler</span>
+                    <span class="skill-bubble">Microsoft Visual Studio</span>
                 </div>
             </div>
 
