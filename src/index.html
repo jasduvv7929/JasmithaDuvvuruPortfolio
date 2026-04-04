@@ -39,6 +39,7 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 100px;
+    overflow-y: scroll;
 }
 
 body {
@@ -137,7 +138,7 @@ nav.scrolled .nav-links a {
     display: flex;
     align-items: center;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     padding-top: 80px;
 }
 
@@ -187,7 +188,7 @@ nav.scrolled .nav-links a {
 .hero-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem 0 0.5rem;
+    padding: 0 2rem;
     position: relative;
     z-index: 1;
 }
@@ -197,6 +198,7 @@ nav.scrolled .nav-links a {
     grid-template-columns: 1.3fr 0.7fr;
     gap: 4rem;
     align-items: center;
+    justify-items: center;
 }
 
 .hero-text h1 {
@@ -223,7 +225,7 @@ nav.scrolled .nav-links a {
     color: var(--text-secondary);
     margin-bottom: 1rem;
     line-height: 1.7;
-    text-align: justify;
+    text-align: center;
 }
 
 .hero-subtext {
@@ -232,11 +234,14 @@ nav.scrolled .nav-links a {
     color: var(--accent-cyan);
     margin-bottom: 2.5rem;
     opacity: 0.8;
+    white-space: nowrap;
+    overflow-x: auto;
 }
 
 .hero-buttons {
     display: flex;
     gap: 1.5rem;
+    justify-content: center;
 }
 
 .btn {
@@ -280,16 +285,18 @@ nav.scrolled .nav-links a {
 
 .hero-image {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    margin-left: -40px;
 }
 
 .profile-pic {
-    width: 280px;
-    height: 280px;
-    border-radius: 50%;
+    width: 240px;
+    height: 240px;
+    border-radius: 8px;
     border: 3px solid var(--accent-cyan);
     box-shadow: 0 0 40px rgba(0, 255, 204, 0.2);
     object-fit: cover;
+    object-position: center 30%;
 }
 
 /* Sections */
@@ -331,6 +338,197 @@ section {
     color: var(--text-secondary);
     line-height: 1.9;
     text-align: justify;
+}
+
+/* Timeline Section */
+#timeline {
+    padding: 6rem 2rem;
+    overflow: hidden;
+}
+
+.timeline-container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 3px;
+    background: var(--border);
+    transform: translateY(-50%);
+    z-index: 1;
+    display: block;
+}
+
+.timeline-progress {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    height: 3px;
+    background: var(--accent-cyan);
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 0;
+    transition: width 0.3s ease-out;
+    display: block;
+}
+
+.timeline-items {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 3;
+    align-items: center;
+    gap: 0;
+    padding: 60px 60px;
+}
+
+.timeline-item {
+    position: relative;
+    width: calc(100% / 8);
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeline-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-item[data-type="education"] {
+    margin: 0 !important;
+    align-items: center;
+}
+
+.timeline-item[data-type="work"] {
+    margin: 0 !important;
+    align-items: center;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 50%;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--bg-primary);
+    border: 3px solid var(--accent-cyan);
+    transform: translateX(-50%);
+    z-index: 4;
+    display: none;
+    top: 50%;
+    margin-top: -9px;
+}
+
+.timeline-item[data-type="education"] .timeline-dot {
+    display: none;
+}
+
+.timeline-item[data-type="work"] .timeline-dot {
+    display: none;
+}
+
+.timeline-content {
+    background: var(--bg-card);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(31, 41, 55, 0.15);
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    width: 100%;
+    max-width: 300px;
+    height: 240px;
+    justify-content: flex-start;
+    padding-top: 0.8rem;
+    overflow: hidden;
+}
+
+.timeline-content:hover {
+    border-color: var(--accent-cyan);
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0, 255, 204, 0.15);
+}
+
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: 2px;
+    background: var(--accent-cyan);
+    transform: translateX(-50%);
+    display: none;
+}
+
+.timeline-item[data-type="education"] .timeline-content::before {
+    display: none;
+}
+
+.timeline-item[data-type="work"] .timeline-content::before {
+    display: none;
+}
+
+.timeline-icon {
+    position: static;
+    width: 44px;
+    height: 44px;
+    background: var(--bg-secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--accent-green);
+    color: var(--accent-green);
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-bottom: 0.2rem;
+}
+
+.timeline-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    margin: 0;
+    font-weight: 700;
+    line-height: 1.2;
+    word-wrap: break-word;
+}
+
+.timeline-org {
+    font-size: 0.75rem;
+    color: var(--accent-cyan);
+    margin: 0;
+    font-weight: 600;
+    opacity: 0.95;
+    line-height: 1.2;
+    word-wrap: break-word;
+}
+
+.timeline-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--text-secondary);
+    opacity: 0.85;
+    line-height: 1.2;
+    margin: 0;
 }
 
 /* Projects Section */
@@ -726,6 +924,9 @@ section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
+    justify-items: center;
+    align-items: start;
+    padding: 0 0.5rem;
 }
 
 .contact-item {
@@ -1016,7 +1217,7 @@ footer {
             <div class="hero-text">
                 <h1>Data Engineer & Analyst</h1>
                 <p class="hero-tagline">I build reliable data systems that move from raw ingestion to clean pipelines to actionable insights.</p>
-                <p class="hero-subtext">MS in Information Management @ UIUC (4.0 GPA) · Ex-Deloitte · AWS · Python · SQL · GenAI</p>
+                <p class="hero-subtext">MS in Information Management @ UIUC (4.0 GPA) · Ex-Deloitte · AWS · Python · SQL · PowerBI · GenAI</p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn btn-primary">View My Work</a>
                     <a href="#contact" class="btn btn-secondary">Get In Touch</a>
@@ -1024,7 +1225,7 @@ footer {
                 </div>
             </div>
             <div class="hero-image">
-                <img src="./assets/edited-photo.png" alt="Jasmitha Duvvuru" class="profile-pic">
+                <img src="./assets/Profile_pic.jpeg" alt="Jasmitha Duvvuru" class="profile-pic">
             </div>
         </div>
     </div>
@@ -1034,9 +1235,105 @@ footer {
 <section id="about">
     <h2 class="section-title">About Me</h2>
     <div class="about-content">
-        <p>I'm a Data Engineer with 3 years of professional experience at Deloitte Consulting, where I optimized SQL data workflows, managed 120+ API integrations for a U.S. government healthcare platform serving 2.5M+ users.</p>
-        <br>
-        <p>Currently pursuing my MS in Information Management at the University of Illinois Urbana-Champaign (GPA: 4.0), I specialize in building end-to-end data pipelines, integrating cloud infrastructure, and applying machine learning and generative AI to solve real-world problems.</p>
+        <p>
+            I am a Data Engineer and Analyst with a passion for transforming complex datasets into actionable insights. With a Master's in Information Management from UIUC and hands-on experience at Deloitte and Amazon, I specialize in building robust data pipelines, leveraging cloud technologies, and applying statistical models to solve real-world problems. I thrive on bridging the gap between data and decision-making.
+        </p>
+    </div>
+</section>
+
+<!-- Timeline Section -->
+<section id="timeline">
+    <h2 class="section-title">My Journey</h2>
+    <div class="timeline-container">
+        <div class="timeline-line"></div>
+        <div class="timeline-progress"></div>
+        <div class="timeline-items">
+            
+            <div class="timeline-item" data-type="education">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.7.7 3.2 2.3 4.2"/><path d="M16 12v5c0 1.7-.7 3.2-2.3 4.2"/></svg>
+                    </div>
+                    <h3 class="timeline-title">B.Tech – ECE</h3>
+                    <p class="timeline-org">Jawaharlal Nehru Technological University</p>
+                    <p class="timeline-date">Jul 2017 – Jul 2021</p>
+                </div>
+            </div>
+
+            <div class="timeline-item" data-type="work">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                    </div>
+                    <h3 class="timeline-title">Data Engineer</h3>
+                    <p class="timeline-org">Deloitte Consulting India</p>
+                    <p class="timeline-date">Sep 2021 – Jul 2024</p>
+                </div>
+            </div>
+
+            <div class="timeline-item" data-type="education">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.7.7 3.2 2.3 4.2"/><path d="M16 12v5c0 1.7-.7 3.2-2.3 4.2"/></svg>
+                    </div>
+                    <h3 class="timeline-title">MS Information Management</h3>
+                    <p class="timeline-org">University of Illinois Urbana-Champaign</p>
+                    <p class="timeline-date">Aug 2024 – May 2026</p>
+                </div>
+            </div>
+
+            <div class="timeline-item" data-type="work">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                    </div>
+                    <h3 class="timeline-title">Data Analyst</h3>
+                    <p class="timeline-org">Extern - Amazon Operational Strategy & People Analytics Externship</p>
+                    <p class="timeline-date">Jul 2025 – Aug 2025</p>
+                </div>
+            </div>
+
+            <div class="timeline-item" data-type="work">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                    </div>
+                    <h3 class="timeline-title">Teaching Assistant</h3>
+                    <p class="timeline-org">ISchool, UIUC</p>
+                    <p class="timeline-date">Sep 2025 – Dec 2025<br>(Data & Statistical Models)</p>
+                </div>
+            </div>
+
+            <div class="timeline-item" data-type="work">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                    </div>
+                    <h3 class="timeline-title">Data Research Analyst</h3>
+                    <p class="timeline-org">I-STEM, CITL (UIUC)</p>
+                    <p class="timeline-date">Sep 2025 – Present</p>
+                </div>
+            </div>
+
+            <div class="timeline-item" data-type="work">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                    </div>
+                    <h3 class="timeline-title">Teaching Assistant</h3>
+                    <p class="timeline-org">ISchool, UIUC</p>
+                    <p class="timeline-date">Feb 2026 – Present<br>(Methods of Data Science)</p>
+                </div>
+            </div>
+
+        </div>
     </div>
 </section>
 
@@ -1055,11 +1352,7 @@ footer {
                         <div class="project-content">
                             <h3 class="project-title">Market Anomaly Detection & Prediction System</h3>
                             <div class="project-tech">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">AWS Lambda</span>
-                                <span class="tech-tag">Glue (PySpark)</span>
-                                <span class="tech-tag">SageMaker</span>
-                                <span class="tech-tag">XGBoost</span>
+                                <span class="tech-tag">AWS: Lambda, S3, IAM, Glue, SageMaker, DynamoDB, EventBridge, Bedrock</span>
                             </div>
                             <p class="project-description">End-to-end serverless ETL pipeline ingesting data from 3 financial sources every 30 minutes. Features a Bronze/Silver/Gold medallion data lake on S3 and XGBoost anomaly prediction model.</p>
                             <button class="view-details-btn" data-modal="modal1">View Details</button>
@@ -1211,7 +1504,7 @@ footer {
             <div class="skill-group">
                 <h3 class="skill-group-title">Cloud</h3>
                 <div class="skill-bubbles">
-                    <span class="skill-bubble skill-bubble-wide">AWS: Lambda, S3, IAM, Glue, SageMaker, Athena, DynamoDB, EventBridge, Bedrock, CloudWatch</span>
+                    <span class="skill-bubble skill-bubble-wide">AWS: Lambda, S3, EC2, Redshift, IAM, Glue, SageMaker, Athena, DynamoDB, EventBridge, Bedrock, CloudWatch</span>
                 </div>
             </div>
 
@@ -1265,7 +1558,7 @@ footer {
                         <polyline points="22,6 12,13 2,6"></polyline>
                     </svg>
                 </span>
-                <p>Reach out via <a href="mailto:jd56@illinois.edu" class="inline-link">jd56@illinois.edu</a> for professional inquiries and project discussions.</p>
+                <p>Reach out for professional inquiries:<br><a href="mailto:jasmithad7929@gmail.com" class="inline-link">jasmithad7929@gmail.com</a></p>
             </div>
             
             <div class="contact-item">
@@ -1295,7 +1588,16 @@ footer {
 </footer>
 
 <script>
-// Animated data visualization in hero
+document.addEventListener('DOMContentLoaded', () => {
+    createDataViz();
+    initNavigation();
+    initSmoothScrolling();
+    initCarousel();
+    initModals();
+    initResumeModal();
+    initTimeline();
+});
+
 function createDataViz() {
     const dataViz = document.getElementById('dataViz');
     const width = window.innerWidth;
@@ -1370,6 +1672,81 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// Resume modal initialization
+const resumeModal = document.getElementById('resumeModal');
+if (resumeModal) resumeModal.classList.remove('active');
+
+
+function initTimeline() {
+    const timeline = document.querySelector('#timeline');
+    if (!timeline) return;
+
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    const timelineProgress = document.querySelector('.timeline-progress');
+    const timelineContainer = document.querySelector('.timeline-container');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    timelineItems.forEach(item => {
+        observer.observe(item);
+    });
+
+    function updateProgress() {
+        const rect = timelineContainer.getBoundingClientRect();
+        const isHorizontal = window.innerWidth > 768;
+        
+        if (isHorizontal) {
+            // This logic is for horizontal scroll, which is not the case here.
+            // We'll base it on the vertical scroll position relative to the timeline section.
+            const scrollTop = window.scrollY;
+            const start = timeline.offsetTop;
+            const height = timeline.offsetHeight;
+            
+            // Consider how much of the viewport has passed the start of the timeline
+            const progress = (scrollTop - start + window.innerHeight * 0.5) / (height);
+            const percent = Math.min(Math.max(progress, 0), 1) * 100;
+
+            if (timelineProgress) {
+                timelineProgress.style.width = `${percent}%`;
+            }
+
+        } else {
+            // Vertical timeline logic
+            const scrollTop = window.scrollY;
+            const start = timeline.offsetTop;
+            const height = timeline.offsetHeight;
+            const viewportHeight = window.innerHeight;
+
+            // Calculate progress based on how much of the timeline section is scrolled through
+            const progress = (scrollTop - start + viewportHeight * 0.8) / height;
+            const percent = Math.min(Math.max(progress, 0), 1) * 100;
+
+            if (timelineProgress) {
+                timelineProgress.style.height = `${percent}%`;
+            }
+        }
+    }
+
+    window.addEventListener('scroll', updateProgress);
+    window.addEventListener('resize', updateProgress);
+    updateProgress(); // Initial call
+}
+
+// Placeholder functions
+function initNavigation() {}
+function initSmoothScrolling() {}
+function initCarousel() {}
+function initModals() {}
+function initResumeModal() {}
 </script>
 
 </body>
